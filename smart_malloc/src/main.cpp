@@ -18,7 +18,7 @@
 void print_banner() {
     std::cout << CYAN << "╔══════════════════════════════════════════════════════════════╗" << RESET << std::endl;
     std::cout << CYAN << "║                    Custom Memory Allocator                   ║" << RESET << std::endl;
-    std::cout << CYAN << "║                        Version 2.0                          ║" << RESET << std::endl;
+    std::cout << CYAN << "║                        Version 2.0                           ║" << RESET << std::endl;
     std::cout << CYAN << "╚══════════════════════════════════════════════════════════════╝" << RESET << std::endl;
     std::cout << std::endl;
 }
@@ -88,14 +88,13 @@ void handle_allocate_memory() {
 }
 
 void handle_free_memory() {
-    std::cout << "Enter memory address to free (hex format, e.g., 0x12345678): ";
+    std::cout << "Enter block ID to free: ";
     std::string input;
     std::getline(std::cin, input);
+    int block_id = std::stoi(input);
     
     try {
-        uintptr_t addr = parse_hex_address(input);
-        void* ptr = reinterpret_cast<void*>(addr);
-        MemoryAllocator::xfree(ptr);
+        MemoryAllocator::xfree_by_block_id(block_id);
         print_success("Memory freed successfully");
     } catch (const std::exception& e) {
         print_error("Invalid address format");

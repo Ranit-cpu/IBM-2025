@@ -39,6 +39,28 @@ void MemoryAllocator::initialize_pool() {
               << "MB (" << NUM_BLOCKS << " blocks of " << BLOCK_SIZE << " bytes each)" << std::endl;
 }
 
+void MemoryAllocator::xfree_by_block_id(uint32_t block_id) {
+    if (!initialized) {
+        std::cout << "❌ Error: Memory pool not initialized" << std::endl;
+        return;
+    }
+
+    char* current_pos = memory_pool;
+    while (current_pos < memory_pool + POOL_SIZE) {
+        BlockHeader* header = reinterpret_cast<BlockHeader*>(current_pos);
+
+        if (header->block_id == block_id) {
+            void* data_ptr = reinterpret_cast<char*>(header) + sizeof(BlockHeader);
+            xfree(data_ptr);
+            return;
+        }
+
+        current_pos += sizeof(BlockHeader) + header->size;
+    }
+
+    std::cout << "❌ Error: No block found with ID " << block_id << std::endl;
+}
+
 BlockHeader* MemoryAllocator::find_free_block(size_t size) {
     BlockHeader* current = free_list;
     BlockHeader* best_fit = nullptr;

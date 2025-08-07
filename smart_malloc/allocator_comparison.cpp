@@ -173,45 +173,50 @@ private:
         std::cout << std::endl;
         
         // Header
-        std::cout << std::setw(20) << "Metric" 
-                  << std::setw(20) << "System (malloc/free)" 
-                  << std::setw(20) << "Custom (xmalloc/xfree)" 
+        std::cout << std::setw(10) << "Metric" 
+                  << std::setw(35) << "System (malloc/free)" 
+                  << std::setw(25) << "Custom (xmalloc/xfree)" 
                   << std::setw(15) << "Difference" << std::endl;
-        std::cout << std::string(75, '-') << std::endl;
+        std::cout << std::string(90, '-') << std::endl;
         
         // Allocation time
         std::cout << std::setw(20) << "Allocation Time (ms)" 
                   << std::setw(20) << std::fixed << std::setprecision(2) << system_metrics.allocation_time_ms
                   << std::setw(20) << std::fixed << std::setprecision(2) << custom_metrics.allocation_time_ms
-                  << std::setw(15) << std::fixed << std::setprecision(2) 
+                  << std::setw(25) << std::fixed << std::setprecision(2) 
                   << ((custom_metrics.allocation_time_ms - system_metrics.allocation_time_ms) / system_metrics.allocation_time_ms * 100) << "%" << std::endl;
+                  std::cout << std::string(90, '-') << std::endl;
         
         // Deallocation time
         std::cout << std::setw(20) << "Deallocation Time (ms)" 
-                  << std::setw(20) << std::fixed << std::setprecision(2) << system_metrics.deallocation_time_ms
+                  << std::setw(18) << std::fixed << std::setprecision(2) << system_metrics.deallocation_time_ms
                   << std::setw(20) << std::fixed << std::setprecision(2) << custom_metrics.deallocation_time_ms
-                  << std::setw(15) << std::fixed << std::setprecision(2) 
+                  << std::setw(25) << std::fixed << std::setprecision(2) 
                   << ((custom_metrics.deallocation_time_ms - system_metrics.deallocation_time_ms) / system_metrics.deallocation_time_ms * 100) << "%" << std::endl;
+                  std::cout << std::string(90, '-') << std::endl;
         
         // Total time
-        std::cout << std::setw(20) << "Total Time (ms)" 
-                  << std::setw(20) << std::fixed << std::setprecision(2) << system_metrics.total_time_ms
+        std::cout << std::setw(10) << "Total Time (ms)" 
+                  << std::setw(25) << std::fixed << std::setprecision(2) << system_metrics.total_time_ms
                   << std::setw(20) << std::fixed << std::setprecision(2) << custom_metrics.total_time_ms
-                  << std::setw(15) << std::fixed << std::setprecision(2) 
+                  << std::setw(25) << std::fixed << std::setprecision(2) 
                   << ((custom_metrics.total_time_ms - system_metrics.total_time_ms) / system_metrics.total_time_ms * 100) << "%" << std::endl;
+                  std::cout << std::string(90, '-') << std::endl;
         
         // Operations per second
-        std::cout << std::setw(20) << "Ops/Second" 
-                  << std::setw(20) << std::fixed << std::setprecision(0) << system_metrics.operations_per_second
+        std::cout << std::setw(10) << "Ops/Second" 
+                  << std::setw(30) << std::fixed << std::setprecision(0) << system_metrics.operations_per_second
                   << std::setw(20) << std::fixed << std::setprecision(0) << custom_metrics.operations_per_second
-                  << std::setw(15) << std::fixed << std::setprecision(2) 
+                  << std::setw(28) << std::fixed << std::setprecision(2) 
                   << ((custom_metrics.operations_per_second - system_metrics.operations_per_second) / system_metrics.operations_per_second * 100) << "%" << std::endl;
+                  std::cout << std::string(90, '-') << std::endl;
         
         // Memory usage
-        std::cout << std::setw(20) << "Memory Used (KB)" 
-                  << std::setw(20) << system_metrics.memory_used / 1024
+        std::cout << std::setw(10) << "Memory Used (KB)" 
+                  << std::setw(23) << system_metrics.memory_used / 1024
                   << std::setw(20) << custom_metrics.memory_used / 1024
-                  << std::setw(15) << "N/A" << std::endl;
+                  << std::setw(22) << "N/A" << std::endl;
+                  std::cout << std::string(90, '-') << std::endl;
         
         std::cout << std::endl;
         

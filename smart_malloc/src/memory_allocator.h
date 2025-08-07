@@ -66,6 +66,7 @@ public:
     // Core allocation functions
     static void* xmalloc(size_t size);
     static void xfree(void* ptr);
+    static void xfree_by_block_id(uint32_t block_id);
     
     // Extended allocation functions
     static void* xcalloc(size_t num, size_t size);
